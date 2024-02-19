@@ -38,21 +38,32 @@ http://cs101.openjudge.cn/practice/20742/
 
 
 
-思路：
+思路：使用lru_cache进行剪枝，递归计算
 
 
 
 ##### 代码
 
 ```python
+from functools import lru_cache
 
+@lru_cache()
+def T(n):
+    if n < 2:
+        return n
+    elif n == 2:
+        return 1
+    else:
+        return T(n-1) + T(n-2) + T(n-3)
+
+print(T(int(input())))
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240219164310135](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240219164310135.png)
 
 
 
@@ -62,21 +73,29 @@ greedy/strings, 1000, http://codeforces.com/problemset/problem/58/A
 
 
 
-思路：
+思路：逐个检验s中的字符，是否有hello中的每个字符
 
 
 
 ##### 代码
 
 ```python
-
+s = iter(input())
+try:
+    for l in "hello":
+        while (True):
+            if next(s) == l:
+                break
+    print("YES")
+except StopIteration:
+    print("NO")
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240219171112325](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240219171112325.png)
 
 
 
@@ -86,21 +105,26 @@ implementation/strings, 1000, http://codeforces.com/problemset/problem/118/A
 
 
 
-思路：
+思路：implementation
 
 
 
 ##### 代码
 
 ```python
-
+s = input().lower()
+ans = ""
+for l in s:
+    if l not in "aeiouy":
+        ans += "." + l
+print(ans)
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240219172502947](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240219172502947.png)
 
 
 
@@ -110,21 +134,34 @@ http://cs101.openjudge.cn/practice/22359/
 
 
 
-思路：
+思路：先用欧拉筛维护素数表，然后遍历
 
 
 
 ##### 代码
 
 ```python
-
+n = int(input())
+prime, cnt, st = [0]*n, 0, [False]*n   #st是素数打标记，primes是额外维护的素数列表
+for i in range(2,n):
+    if not st[i]:
+        prime[cnt] = i
+        cnt += 1
+    for j in range(n):
+        if prime[j]>=n/i: break
+        st[prime[j]*i] = True
+        if i%prime[j] == 0: break
+for i in range(2,n):
+    if st[i] == False and st[n-i] == False:
+        print(i,n-i)
+        break
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240219180435660](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240219180435660.png)
 
 
 

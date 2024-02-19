@@ -38,7 +38,7 @@ Updated 0940 GMT+8 Feb 19, 2024
 
 [Bright-Summer/cs201-manual: 数据结构与算法（B）资料库 (github.com)](https://github.com/Bright-Summer/cs201-manual)
 
-
+![image-20240219163856688](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240219163856688.png)
 
 ## 3. 评分标准
 
