@@ -2,9 +2,7 @@
 
 Updated 0940 GMT+8 Feb 19, 2024
 
-2024 spring, Complied by ==同学的姓名、院系==
-
-
+2024 spring, Complied by 夏天明 元培学院
 
 **说明：**
 
@@ -38,7 +36,7 @@ Updated 0940 GMT+8 Feb 19, 2024
 
 ## 2. 提交内容
 
-你的GitHub网址及截图。
+[Bright-Summer/cs201-manual: 数据结构与算法（B）资料库 (github.com)](https://github.com/Bright-Summer/cs201-manual)
 
 
 
