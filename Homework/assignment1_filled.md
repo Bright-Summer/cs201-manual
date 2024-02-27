@@ -171,21 +171,29 @@ http://cs101.openjudge.cn/practice/23563/
 
 
 
-思路：
+思路：关注最大项即可
 
 
 
 ##### 代码
 
 ```python
+def getItem(it):
+    a = it.split("n^")
+    r = int(a[1])
+    if a[0] == "0":
+        r = 0
+    return r
 
+s = [getItem(i) for i in input().split("+")]
+print(f"n^{max(s)}")
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240227142210142](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240227142210142.png)
 
 
 
@@ -195,29 +203,27 @@ http://cs101.openjudge.cn/practice/24684/
 
 
 
-思路：
+思路：桶，简单实现
 
 
 
 ##### 代码
 
 ```python
+from collections import Counter
 
+cnt = Counter(map(int, input().split()))
+print(*sorted(i for i in cnt if cnt[i] == max(cnt.values())))
 ```
 
 
 
 代码运行截图 
 
-
+![image-20240227142617169](https://raw.githubusercontent.com/Bright-Summer/homework_picture_bed/main/img/image-20240227142617169.png)
 
 
 
 ## 2. 学习总结和收获
 
-==如果作业题目简单，有否额外练习题目，比如：OJ“数算pre每日选做”、CF、LeetCode、洛谷等网站题目。==
-
-
-
-
-
+复习计概知识，熟悉git的使用，与Github仓库同步管理
