@@ -45,6 +45,19 @@ datetime.date(2019, 12, 4)
 datetime.date(2019, 12, 4)
 ```
 
+### datetime类
+
+*classmethod* datetime.**strptime**(*date_string*, *format*)
+
+返回一个对应于 *date_string*，根据 *format* 进行解析得到的 [`datetime`](https://docs.python.org/zh-cn/3/library/datetime.html#datetime.datetime) 对象。
+
+```python3
+>>>datetime.strptime('2015-04-07 04:30:03.628556', "%Y-%m-%d %H:%M:%S.%f")
+datetime.datetime(2015, 4, 7, 4, 30, 3, 628556) 
+```
+
+支持`a + timedelta    a - b    a > b`等
+
 ### timedelta类
 
 ```python3
