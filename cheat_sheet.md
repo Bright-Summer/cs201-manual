@@ -73,7 +73,7 @@ import functools
 
 functools.**cmp_to_key**(*func*)
 
-将(旧式的)比较函数转换为新式的键函数。比较函数是任何接受两个参数，对它们进行比较，并在结果为小于时返回一个负数，相等时返回零，大于时返回一个正数的可调用对象。 键函数是接受一个参数并返回另一个用作排序键的值的可调用对象。
+将(旧式的)比较函数转换为新式的键函数。比较函数是任何接受两个参数，对它们进行比较，并在**结果为小于时返回一个负数，相等时返回零，大于时返回一个正数**的可调用对象。
 
 functools.**partial**(*func*, */*, **args*, ***keywords*)
 
@@ -95,22 +95,13 @@ functools.**reduce**(*function*, *iterable*[, *initializer*])
 
 **根据最短输入序列长度停止的迭代器：**
 
-| 迭代器                                                       | 实参                        | 结果                                             | 示例                                                       |
-| :----------------------------------------------------------- | :-------------------------- | :----------------------------------------------- | :--------------------------------------------------------- |
-| [`accumulate()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.accumulate) | p [,func]                   | p0, p0+p1, p0+p1+p2, ...                         | `accumulate([1,2,3,4,5]) --> 1 3 6 10 15`                  |
-| [`batched()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.batched)*3.12 新版功能.* | p, n                        | (p0, p1, ..., p_n-1), ...                        | `batched('ABCDEFG', n=3) --> ABC DEF G`                    |
-| [`chain()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.chain) | p, q, ...                   | p0, p1, ... plast, q0, q1, ...                   | `chain('ABC', 'DEF') --> A B C D E F`                      |
-| [`chain.from_iterable()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.chain.from_iterable) | iterable -- 可迭代对象      | p0, p1, ... plast, q0, q1, ...                   | `chain.from_iterable(['ABC', 'DEF']) --> A B C D E F`      |
-| [`compress()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.compress) | data, selectors             | (d[0] if s[0]), (d[1] if s[1]), ...              | `compress('ABCDEF', [1,0,1,0,1,1]) --> A C E F`            |
-| [`dropwhile()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.dropwhile) | pred, seq                   | seq[n], seq[n+1], ... 从pred首次真值测试失败开始 | `dropwhile(lambda x: x<5, [1,4,6,4,1]) --> 6 4 1`          |
-| [`filterfalse()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.filterfalse) | pred, seq                   | seq中pred(x)为假值的元素，x是seq中的元素。       | `filterfalse(lambda x: x%2, range(10)) --> 0 2 4 6 8`      |
-| [`groupby()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.groupby) | iterable[, key]             | 根据key(v)值分组的迭代器                         | 返回迭代器，可通过`for k, g in groupby(...):`遍历          |
-| [`islice()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.islice) | seq, [start,] stop [, step] | seq[start:stop:step]中的元素                     | `islice('ABCDEFG', 2, None) --> C D E F G`                 |
-| [`pairwise()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.pairwise) | iterable -- 可迭代对象      | (p[0], p[1]), (p[1], p[2])                       | `pairwise('ABCDEFG') --> AB BC CD DE EF FG`                |
-| [`starmap()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.starmap) | func, seq                   | func(*seq[0]), func(*seq[1]), ...                | `starmap(pow, [(2,5), (3,2), (10,3)]) --> 32 9 1000`       |
-| [`takewhile()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.takewhile) | pred, seq                   | seq[0], seq[1], ..., 直到pred真值测试失败        | `takewhile(lambda x: x<5, [1,4,6,4,1]) --> 1 4`            |
-| [`tee()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.tee) | it, n                       | it1, it2, ... itn 将一个迭代器拆分为n个迭代器    |                                                            |
-| [`zip_longest()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.zip_longest) | p, q, ...                   | (p[0], q[0]), (p[1], q[1]), ...                  | `zip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-` |
+| 迭代器                                                       | 实参                        | 结果                           | 示例                                                  |
+| :----------------------------------------------------------- | :-------------------------- | :----------------------------- | :---------------------------------------------------- |
+| [`accumulate()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.accumulate) | p [,func]                   | p0, p0+p1, p0+p1+p2, ...       | `accumulate([1,2,3,4,5]) --> 1 3 6 10 15`             |
+| [`chain()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.chain) | p, q, ...                   | p0, p1, ... plast, q0, q1, ... | `chain('ABC', 'DEF') --> A B C D E F`                 |
+| [`chain.from_iterable()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.chain.from_iterable) | iterable -- 可迭代对象      | p0, p1, ... plast, q0, q1, ... | `chain.from_iterable(['ABC', 'DEF']) --> A B C D E F` |
+| [`islice()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.islice) | seq, [start,] stop [, step] | seq[start:stop:step]中的元素   | `islice('ABCDEFG', 2, None) --> C D E F G`            |
+| [`pairwise()`](https://docs.python.org/zh-cn/3/library/itertools.html#itertools.pairwise) | iterable -- 可迭代对象      | (p[0], p[1]), (p[1], p[2])     | `pairwise('ABCDEFG') --> AB BC CD DE EF FG`           |
 
 **排列组合迭代器：**
 
@@ -198,24 +189,6 @@ functools.**reduce**(*function*, *iterable*[, *initializer*])
 
   类似于 [`insort_left()`](https://docs.python.org/zh-cn/3/library/bisect.html?highlight=bise#bisect.insort_left)，但是会把 *x* 插入到 *a* 中任何现有条目 *x* 之后。此函数首先会运行 [`bisect_right()`](https://docs.python.org/zh-cn/3/library/bisect.html?highlight=bise#bisect.bisect_right) 来定位一个插入点。 然后，它会在 *a* 上运行 `insert()` 方法。由缓慢的 $O(n)$插入步骤主导。
 
-### 懒二分
-
-以下函数寻找升序懒列表中小于等于x的部分的最大序号，即满足`lazylist_func(ip) <= x`的最大*ip*。
-
-```python3
-def lazybisect_right(start, end, lazylist_func, x):
-    l, r = start, end
-    while l+1 < r:
-        mid = (l+r)//2
-        if lazylist_func(mid) > x:
-            r = mid
-        else:
-            l = mid
-    return l
-```
-
-
-
 ## array模块
 
 在数组对象创建时用单个字符的 *类型码* 来指定：
@@ -281,35 +254,7 @@ name = "Fred"
 
 ![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9maHVqem9RZTdUcTA2dzNnVlhlaFlJZ1FLTzNVOWpxODdqOUJNazV0ZndqQVVET2tEYmxzd2JwYnVpYm5ZU21XU2R3OXlqT09RNnFpYlB6eGF4c2ZpYnR1US82NDA?x-oss-process=image/format,png)
 
-日期与时间
 
-~~~python3
->>> today = datetime(year=2017, month=1, day=27)
->>> f"{today:%B %d, %Y}"  # using date format specifier
-'January 27, 2017'
->>> f"{today=:%B %d, %Y}" # using date format specifier and debugging
-'today=January 27, 2017'
-~~~
-| 指令 | 含意                                                         | 示例                                         |
-| :--- | :----------------------------------------------------------- | :------------------------------------------- |
-| `%a` | 当地工作日的缩写。                                           | Sun, Mon, ..., Sat                           |
-| `%A` | 本地化的星期中每日的完整名称。                               | Sunday, Monday, ..., Saturday (en_US)        |
-| `%w` | 以十进制数显示的工作日，其中0表示星期日，6表示星期六。       | 0, 1, ..., 6                                 |
-| `%d` | 补零后，以十进制数显示的月份中的一天。                       | 01, 02, ..., 31                              |
-| `%b` | 当地月份的缩写。                                             | Jan, Feb, ..., Dec (en_US)                   |
-| `%B` | 本地化的月份全名。                                           | January, February, ..., December             |
-| `%m` | 补零后，以十进制数显示的月份。                               | 01, 02, ..., 12                              |
-| `%y` | 补零后，以十进制数表示的，不带世纪的年份。                   | 00, 01, ..., 99                              |
-| `%Y` | 十进制数表示的带世纪的年份。                                 | 0001, 0002, ..., 2013, 2014, ..., 9998, 9999 |
-| `%H` | 以补零后的十进制数表示的小时（24 小时制）。                  | 00, 01, ..., 23                              |
-| `%I` | 以补零后的十进制数表示的小时（12 小时制）。                  | 01, 02, ..., 12                              |
-| `%p` | 本地化的 AM 或 PM 。                                         | AM, PM                                       |
-| `%M` | 补零后，以十进制数显示的分钟。                               | 00, 01, ..., 59                              |
-| `%S` | 补零后，以十进制数显示的秒。                                 | 00, 01, ..., 59                              |
-| `%j` | 以补零后的十进制数表示的一年中的日序号。                     | 001, 002, ..., 366                           |
-| `%U` | 以补零后的十进制数表示的一年中的周序号（星期日作为每周的第一天）。 在新的一年中第一个星期日之前的所有日子都被视为是在第 0 周。 | 00, 01, ..., 53                              |
-| `%W` | 以补零后的十进制数表示的一年中的周序号（星期一作为每周的第一天）。 在新的一年中第一个星期一之前的所有日子都被视为是在第 0 周。 | 00, 01, ..., 53                              |
-| `%%` | 字面的 `'%'` 字符。                                          | %                                            |
 
 保持空格
 ~~~python3
@@ -632,30 +577,6 @@ class Barrel(list):
         self.cnt[elem] -= 1
 ```
 
-## 动态规划（DP）
-
-### 多重背包的二进制优化
-
-*coins*，A为面值，C为对应硬币的数量，求能组合出多少种价格以及方案数
-
-```python3
-dp = [0]*(m+1)
-dp[0] = 1
-for i, cnt in enumerate(C):
-    k = 1
-    while cnt >= 0:
-        pack = min(k, cnt)
-        for j in range(m, pack*A[i]-1, -1):
-            dp[j] += dp[j-pack*A[i]]
-        cnt -= k
-        k *= 2
-print(sum(bool(q) for q in dp)-1)
-```
-
-### 最长公共子序列
-
-![1](E:\Python Codes\1.png)
-
 ## 排列
 
 ```python3
@@ -672,9 +593,25 @@ def next_perm(n, num):
 
 ## 单调栈
 
-![img](https://img-blog.csdnimg.cn/img_convert/b19c64be59ab47df97d1377c6f1c8be0.png)
+奶牛排队
 
-加保护圈：头尾各加一个0，这样栈恒非空；最大矩形面积：`height[stack.pop()] * (i-stack[-1]-1)`
+```python3
+from bisect import bisect_right
+
+h = []
+low, high = [], []
+ans = 0
+for i in range(int(input())):
+    h.append(int(input()))
+    while low and h[-1] <= h[low[-1]]:
+        low.pop()
+    low.append(i)
+    while high and h[-1] > h[high[-1]]:
+        high.pop()
+    high.append(i)
+    ans = max(ans, i - low[bisect_right(low, high[-2] if len(high)>1 else -1)])
+print(ans+1 if ans else 0)
+```
 
 ## BFS
 
@@ -705,5 +642,105 @@ for o in range(p):
                         record[x+i][y+j] = t+dt
         print("NO")
     bfs()
+```
+
+## 并查集
+
+```python3
+class Dsu:
+    def __init__(self, size):
+        self.pa = list(range(size))
+    
+    def find(self, x):
+        if self.pa[x] != x:
+            self.pa[x] = self.find(self.pa[x])
+        return self.pa[x]
+    
+    def union(self, x, y):
+        self.pa[self.find(x)] = self.find(y)
+```
+
+## 调度场
+
+```python3
+import re
+
+pre = {'(':1, '+':2, '-':2, '*':3, '/':3}
+for o in range(int(input())):
+    s = re.split(r"([^\d.])", input())
+    ans = []
+    op = []
+    for token in s:
+        if token == '(':
+            op.append('(')
+        elif token == ')':
+            while (t:=op.pop()) != '(':
+                ans.append(t)
+        elif token and token in '+-*/':
+            while op and pre[op[-1]] >= pre[token]:
+                ans.append(op.pop())
+            op.append(token)
+        elif token:
+            ans.append(token)
+    while op:
+        ans.append(op.pop())
+    print(*ans)
+```
+
+## 树的计算
+
+n个结点的二叉树有多少种形态：卡特兰数
+
+$\displaystyle h(n)=\frac{C_{2n}^{n}}{n+1}$
+
+n层的AVL树至少有多少结点：$f(x)=f(x-1)+f(x-2)+1$
+
+## 波兰表达式
+
+波兰表达式是一种把运算符前置的算术表达式，例如普通的表达式2 + 3的波兰表示法为+ 2 3。波兰表达式的 优点是运算符之间不必有优先级关系，也不必用括号改变运算次序，例如(2 + 3) * 4的波兰表示法为* + 2 3 4。本题求解波兰表达式的值，其中运算符包括+ - * /四个。
+
+## 哈夫曼树
+
+```python3
+from heapq import heapify, heappop, heappush
+
+class Node:
+    def __init__(self, value, name, child = []):
+        self.val = value
+        self.name = name
+        self.child = child
+    
+    def __lt__(self, other):
+        return (self.val, self.name) < (other.val, other.name)
+    
+    def getCode(self, char, path = []):
+        if char == self.name:
+            return path
+        else:
+            for i, nd in enumerate(self.child):
+                if p := nd.getCode(char, path + [str(i)]):
+                    return p
+
+q = [(lambda char, freq: Node(int(freq), char))(*input().split()) for o in range(int(input()))]
+heapify(q)
+while len(q) > 1:
+    a, b = heappop(q), heappop(q)
+    heappush(q, Node(a.val + b.val, a.name + b.name, child=[a,b]))
+while True:
+    try:
+        s = input()
+    except EOFError:
+        break
+    if s.isdigit():    #解码
+        ans = []
+        curr = q[0]
+        for code in map(int, s + '0'):
+            if not curr.child:
+                ans.append(curr.name)
+                curr = q[0]
+            curr = curr.child[code]
+        print(''.join(ans))
+    else:     #编码
+        print(''.join(code for char in s for code in q[0].getCode(char)))
 ```
 
